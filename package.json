@@ -1,0 +1,9 @@
+{
+  "name": "dazn-tech-test",
+  "version": "1.0.0",
+  "description": "api tech challenge for dazn",
+  "main": "index.js",
+  "repository": "https://github.com/jdLYNC/dazn-tech-test",
+  "author": "Josh Lynch",
+  "license": "MIT"
+}
