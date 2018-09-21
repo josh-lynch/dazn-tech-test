@@ -8,7 +8,11 @@
   "license": "MIT",
   "scripts": {
     "deploy-dev-service": "serverless deploy -v --stage dev",
-    "remove-service": "serverless remove",
-    "update-dev-lambda": "serverless deploy function -f users-api --stage dev"
+    "update-dev-lambda": "serverless deploy function -f users-api --stage dev",
+    "seed": "node db-seed-data",
+    "remove-service": "serverless remove"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.319.0"
   }
 }
