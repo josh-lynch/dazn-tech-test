@@ -1,0 +1,15 @@
+service: dazn-tech-test
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+functions:
+  check-user-active-streams:
+    handler: ./index.js
+    name: check-user-active-streams
+    description: api to check number of active user streams and return users right to watch new content
+    events:
+      - http:
+          path: /
+          method: ANY
