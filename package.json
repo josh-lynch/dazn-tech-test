@@ -5,5 +5,10 @@
   "main": "index.js",
   "repository": "https://github.com/jdLYNC/dazn-tech-test",
   "author": "Josh Lynch",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "deploy-dev-service": "serverless deploy -v --stage dev",
+    "remove-service": "serverless remove",
+    "update-dev-lambda": "serverless deploy function -f users-api --stage dev"
+  }
 }

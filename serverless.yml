@@ -3,13 +3,45 @@ service: dazn-tech-test
 provider:
   name: aws
   runtime: nodejs8.10
+  region: eu-west-2
+  iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - dynamodb:DescribeTable
+      - dynamodb:Query
+      - dynamodb:Scan
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+    Resource:
+      - "Fn::GetAtt": [ usersTable, Arn ]
 
 functions:
-  check-user-active-streams:
-    handler: ./index.js
-    name: check-user-active-streams
-    description: api to check number of active user streams and return users right to watch new content
+  users-api:
+    handler: index
+    name: users-api-${self:custom.stage}
+    description: api to check user data, primarily checking the number of active streams to determine the right to access new content
     events:
       - http:
           path: /
           method: ANY
+    environment:
+      TABLE_NAME: ${self:resources.Resources.usersTable.Properties.TableName}
+
+resources:
+  Resources:
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: usersTable-${self:custom.stage}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: N
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+custom:
+  stage: ${opt:stage, 'dev'}
