@@ -1,24 +1,24 @@
 const {
   GraphQLList, GraphQLInt, GraphQLBoolean
 } = require('graphql');
-const chai = require('chai');
+const { expect } = require('chai');
 const UserType = require('../schema/user-type');
 
-const expect = chai.expect;
+const fieldTests = [
+  { property: 'id', type: GraphQLInt },
+  { property: 'currentStreams', type: GraphQLList(GraphQLInt) },
+  { property: 'canStartNewStream', type: GraphQLBoolean }
+]
 
 describe('User Schema', () => {
-  it('Should have a \'id\' field of type Int', () => {
-    expect(UserType.getFields()).to.have.property('id');
-    expect(UserType.getFields().id.type).to.deep.equals(GraphQLInt);
-  });
   
-  it('Should have a \'currentStreams\' field of type List(Int)', () => {
-    expect(UserType.getFields()).to.have.property('currentStreams');
-    expect(UserType.getFields().currentStreams.type).to.deep.equals(GraphQLList(GraphQLInt));
+  const userFields = UserType.getFields();
+
+  fieldTests.forEach(({ property, type }, i) => {
+    it(`Test ${i}: Should have a '${property}' field of type ${type}`, () => {
+      expect(userFields).to.have.property(property);
+      expect(userFields[property].type).to.deep.equals(type);
+    });
   });
 
-  it('Should have a \'canStartNewStream\' field of type Boolean', () => {
-    expect(UserType.getFields()).to.have.property('canStartNewStream');
-    expect(UserType.getFields().canStartNewStream.type).to.deep.equals(GraphQLBoolean);
-  });
 });
