@@ -5,10 +5,11 @@ module.exports.handler = (event, context, callback) => {
   console.log(JSON.stringify(event, null, 2));
 
   const { httpMethod, body } = event;
-
+  
   switch (httpMethod) {
-    case 'POST':
-      return graphql(schema, JSON.parse(body).query)
+    case 'POST': {
+      const { query } = JSON.parse(body);
+      return graphql(schema, query)
         .then(result => {
           callback(null, {
             statusCode: 200,
@@ -19,6 +20,7 @@ module.exports.handler = (event, context, callback) => {
           statusCode: 500,
           body: JSON.stringify({ message: err })
         }));
+    }
     case 'GET':
     case 'HEAD':
     case 'OPTIONS':

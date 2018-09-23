@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk');
 const {
-  GraphQLSchema, GraphQLObjectType, GraphQLInt
+  GraphQLSchema, GraphQLObjectType, GraphQLInt, GraphQLNonNull
 } = require('graphql');
 const UserType = require('./user-type');
 
@@ -14,9 +14,9 @@ const QuerySchema = new GraphQLSchema({
       user: {
         type: UserType,
         args: {
-          id: { name: 'id', type: GraphQLInt }
+          id: { name: 'id', type: GraphQLNonNull(GraphQLInt) }
         },
-        resolve: (root, { id }) => {
+        resolve: (_, { id }) => {
           const params = {
             TableName: tableName,
             Key: { id }

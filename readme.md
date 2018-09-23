@@ -32,4 +32,6 @@ yarn seed
   // seeds dummy data in db
 ```
 
+the service can be tested by running `yarn test`
+
 ## scalability strategy

@@ -13,7 +13,7 @@ const UserType = new GraphQLObjectType({
     },
     currentStreams: {
       type: GraphQLList(GraphQLInt),
-      resolve: ({ Item: user }) => user.currentStreams
+      resolve: ({ Item: user }) =>  user.currentStreams
     },
     canStartNewStream: {
       type: GraphQLBoolean,
