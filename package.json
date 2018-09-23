@@ -11,13 +11,16 @@
     "invoke": "serverless invoke --function users-api",
     "update-dev-lambda": "serverless deploy function -f users-api --stage dev",
     "seed": "node db-seed-data",
-    "remove-service": "serverless remove"
+    "remove-service": "serverless remove",
+    "test": "mocha ./tests/*.test.js"
   },
   "dependencies": {
     "aws-sdk": "^2.319.0",
     "graphql": "^14.0.2"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
     "serverless-plugin-optimize": "^3.1.1-rc.1"
   }
 }
