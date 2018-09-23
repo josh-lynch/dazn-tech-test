@@ -14,7 +14,8 @@
     "remove-service": "serverless remove"
   },
   "dependencies": {
-    "aws-sdk": "^2.319.0"
+    "aws-sdk": "^2.319.0",
+    "graphql": "^14.0.2"
   },
   "devDependencies": {
     "serverless-plugin-optimize": "^3.1.1-rc.1"
