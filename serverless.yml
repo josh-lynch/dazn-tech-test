@@ -28,7 +28,6 @@ functions:
     description: api to check user data, primarily checking the number of active streams to determine the right to access new content
     events:
       - http: ANY /graphql
-      - http: ANY /
     environment:
       TABLE_NAME: ${self:resources.Resources.usersTable.Properties.TableName}
 

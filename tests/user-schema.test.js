@@ -14,8 +14,8 @@ describe('User Schema', () => {
   
   const userFields = UserType.getFields();
 
-  fieldTests.forEach(({ property, type }, i) => {
-    it(`Test ${i}: Should have a '${property}' field of type ${type}`, () => {
+  fieldTests.forEach(({ property, type }) => {
+    it(`Should have a '${property}' field of type ${type}`, () => {
       expect(userFields).to.have.property(property);
       expect(userFields[property].type).to.deep.equals(type);
     });

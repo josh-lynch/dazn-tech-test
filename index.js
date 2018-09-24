@@ -8,6 +8,7 @@ module.exports.handler = (event, context, callback) => {
   
   switch (httpMethod) {
     case 'POST': {
+      
       const { query } = JSON.parse(body);
       return graphql(schema, query)
         .then(result => {

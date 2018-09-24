@@ -26,6 +26,8 @@ there are currently 10 users in the database (id: [0 - 9]).
 to redeploy this api run the following cli scripts;
 
 ```
+yarn
+  // install dependencies
 yarn deploy-dev-service
   // deploys lambda function api and db
 yarn seed
